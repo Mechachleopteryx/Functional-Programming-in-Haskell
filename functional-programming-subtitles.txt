@@ -1,0 +1,745 @@
+Hi everybody! Welcome
+
+to another episode of FP101x.
+
+And what we're going to do today
+
+is we're going to look how to define
+
+functions in Haskell. Now
+
+I think everybody of you that
+
+has been to college in a different town
+
+than where they grew up has had
+
+this experience in one way or
+another.
+
+You leave your hometown where you grew
+up, you went to
+
+elementary school, you went to highschool,
+you go off for college
+
+and then ten years later you come back
+
+and things have changed slightly
+
+but they're also a little bit the same.
+
+And that can be a little bit
+disorientating because
+
+in your memory things were
+
+like they were, but in reality they have
+changed
+
+slightly.
+
+You will get the same experience when
+you look
+
+at Haskell. Haskell looks very familiar
+
+to other programming languages, but it
+differs in subtle ways.
+
+And the goal of this lecture is to
+
+walk through some of the syntax of Haskell
+
+function definition and expressions
+
+and compare and contrast these with
+
+how you do these things in other
+programming languages.
+
+And once you're aware of these
+differences
+
+it will be fairly easy to adopt to them
+but
+
+there are some things where Haskell is
+definitely a little bit
+
+different than what
+
+most people are used to in Java or
+
+in PHP or whatever your favorite
+language is.
+
+So
+
+the first thing is conditional
+expressions. Every language has
+
+conditional expressions. And often
+there's a difference between conditional
+
+statements,
+
+that are written using if then else,
+and conditional expressions,
+
+ternary expressions, that are written
+with question mark
+
+colon. Other languages do have if
+then else for expressions as well, for
+
+example in Scala
+
+but if you're using C# or
+
+Java, there's the conditional
+statements
+
+and then for conditional expressions
+there's different syntax. 
+
+In Haskell since
+there's no statements
+
+when you want to write a conditional you write if then else. 
+
+In this case we're defining a function that
+takes an integer
+
+
+
+and returns another integer, and it's
+defined..
+
+
+This is the absolute value. 
+take
+
+
+a value and says that if that value is greater
+than 0
+
+
+then you return n else you return -n.
+
+
+You negate the value. So here you
+see that we're using the familiar
+
+if then else as an expression form.
+
+
+Of course, since it's just an expression
+
+
+they can be nested as well.
+
+
+And since conditionals are
+expressions
+
+
+you always have to have a then and an else
+part. Alright?
+
+
+So in this case you can define
+
+the sign of a number, so if n is
+less than 0
+
+
+it's -1, if n is zero
+
+
+then the sign is 0 and else n is
+greater than zero, then the sign
+
+
+is 1.
+
+So you always have to
+have both
+
+
+
+a then and an else branch, just like in ternary
+expressions.
+
+
+Now, um....
+
+Because Haskell people like brevity, they often don't use conditional expressions, but they use so-called
+
+
+guarded equations.
+
+
+
+And a guarded equation
+
+
+
+captures a common pattern where a function
+starts with a conditional.
+
+
+
+So, if the right hand side of a function
+definition immediately has a conditional
+
+
+
+it's often nicer to use this form with
+guarded equations. So you write your
+
+
+
+function definition on your left hand side
+
+
+
+and then you write you're conditions
+here, so
+
+
+
+the absolute value of n is
+
+
+
+n when n is greater than or equal to 0
+
+
+
+or it's -n otherwise. And otherwise is
+just
+
+
+another alias for True. Now let's
+
+
+
+go back to
+
+
+
+the definition here, of the absolute value
+using a conditional.
+
+
+
+And here you see what I said.
+This is a function
+
+
+
+that is defined immediately using
+
+
+
+a conditional.
+
+
+
+And Haskell people prefer to write it
+like this. And now you see that the right hand
+
+
+side
+
+
+
+is simpler and the cases are
+
+
+more distinguished. You can easily
+reason about this.
+
+
+If it's greater than zero or
+
+
+if it's less than zero. And the other
+function, especially when you have nested
+
+
+conditionals
+
+
+this becomes even more worthwhile.
+
+
+So in order to define the sign of a
+number: if it's less than zero
+
+
+-1, if it's equal to zero 0
+
+
+and otherwise it's one. Here you see
+
+
+
+the kind of mathematical heritage of 
+Haskell
+
+
+
+where we like to write things in a very
+
+
+
+concise way. And these guarded equations
+
+
+
+are something that are very
+
+
+
+idiomatic Haskell. So, typically you don't
+write
+
+
+
+if then else, you write
+
+
+
+these guarded equations.
+
+
+
+Another thing that
+
+
+
+is very heavily used in Haskell
+
+
+
+and that few contemporary languages
+
+
+
+have is pattern matching.
+
+
+
+Scala for example has pattern
+matching
+
+
+
+but there you have to use a case statement
+to do the pattern matching.
+
+
+
+C# will get pattern matching.
+It uses the switch statement.
+
+
+
+But in Haskell you can use pattern
+matching directly when you define
+
+
+
+functions. So for example when we
+
+
+
+want to define negation, function from
+Bool
+
+
+
+to Bool, we can define it with pattern
+matching directly. We can say not of False
+
+equals True and not of True equals
+False.
+
+
+That is a very very concise
+
+
+definition of negation. Let's look at
+another example.
+
+
+Say that we want to define &&
+
+
+of two booleans, a function from
+Bool to Bool to Bool
+
+
+and we just write down
+
+
+the truth table for &&. So this is
+
+
+exactly how you... if you look
+up the definition
+
+
+of && in any book on digital logic, you
+will see the same truth table here.
+
+
+We can write that down, but if you look at
+
+all of this, you see that it can be
+written
+
+even more compactly. Because the only
+case
+
+where this thing is true is when
+both arguments here are true.
+
+And in all other cases it's false. So you
+can take
+
+these four cases here and collapse them
+down to these two.
+
+True && True equals True and
+otherwise
+
+whatever and whatever equals False.
+
+And this underscore here is used
+
+very very often in Haskell and it means
+
+this is a variable that I don't care about.
+
+It's just used as a placeholder
+
+when doing pattern matching. Ok?
+
+Um, now, If you look at this definition
+
+it will evaluate
+
+both arguments
+
+in order to do this match, because we're
+putting a pattern
+
+on both sides of the &&.
+
+Haskell people are very sensitive to
+this, because Haskell is a lazy language
+
+and
+
+you want to do as little
+evaluation as possible
+
+in order to find
+
+the answer to this function call. Alright?
+
+So a nicer definition 
+
+according to the Haskell idiom is the
+
+following:
+
+If it's True then
+
+True and something is the same as b
+
+and False and whatever is False.
+
+Let's see if this is true. True
+
+and True equals True. True and
+False
+
+equals False. So True and whatever
+is there
+
+is whatever was there. And if it's
+
+False on the left hand side, it doesn't
+matter what's here on the right hand side.
+
+It's always False. This is actually
+
+the most optimal definition of
+
+&& because it only
+
+
+
+evaluates the first argument
+
+
+
+as necessary.
+
+
+
+In Haskell patterns are matched in
+order.
+
+
+
+They are matched top to bottom left
+to right, or left to right
+
+
+
+top to bottom, if I'm really precise.
+
+
+
+And so the compiler does not try to
+rearrange
+
+
+
+the patterns necessarily to
+
+
+
+make them more optimal, because the order
+
+
+
+is important and you can intermix
+pattern matching
+
+
+
+with guarded equations.
+
+
+
+So, the easiest thing to think about is that
+patterns are always matched
+
+
+
+left to right, top to bottom.
+
+
+
+You cannot repeat variables, for example:
+
+
+
+You cannot say b && b equals b
+
+
+
+and assume that this is implicitly doing
+equality
+
+
+
+over b. All the variables
+
+
+
+inside a pattern must be unique.
+
+
+
+One thing that we have seen: we have
+written lists using these square brackets.
+
+
+
+And these square brackets really are just
+syntactic sugar for
+
+
+
+writing the list using explicit
+
+
+
+cons and empty list.
+
+
+
+When a list
+
+
+
+a constant list appears in some place
+
+
+
+it will mean this, but inside pattern
+matching
+
+
+
+we often have to write lists in this form.
+So for example when we want to define
+
+
+
+the head of a list, we define it using
+pattern matching as follows:
+
+
+
+We write the list in head
+
+
+
+tail form. Let's call it like that.
+
+
+
+The head of a list, with head x and
+tail
+
+
+
+I don't care, is the head. And the tail
+
+
+
+of a list, with a head that I don't care
+about, and tail xs
+
+
+
+is xs. So again
+
+
+
+very concise definitions. And just for
+fun
+
+
+
+let's look at the types. Tail takes
+a list
+
+and since the tail of a list
+is a list
+
+the type is list
+
+
+
+to list. Head takes a list
+
+
+
+but the value of the head
+
+
+
+is the element type of the list, so
+it's a, so this thing goes from list
+
+
+
+of a to a. Of course
+
+
+
+these are not total functions, because
+head and tail
+
+
+
+are not defined on the empty list.
+When I apply head to the empty list
+
+
+
+there's no pattern that matches
+
+
+
+and so what you will get is
+an error. And the same for tail.
+
+
+
+Another way to say that
+
+
+
+is that a pattern like this
+x:xs only matches
+
+
+
+a non-empty list. If you call head 
+with the empty list
+
+
+
+this pattern here
+
+
+
+doesn't match, because it's not of the form
+
+
+
+x cons anything.
+
+
+
+When you see head of empty list, there's no
+case that matches
+
+
+
+you get an error and the other thing
+
+
+
+is that you have to parenthesize
+these list
+
+
+
+patterns, because (remember?) application
+binds strongest.
+
+
+
+This would mean head of x cons, you know, um,
+
+
+
+anything, so you have to put
+parens
+
+
+
+in these patterns to make it work.
+Alright?
+
+
+
+That was our first part of defining
+functions in Haskell.
+
+
+
+See you after the break.
+
+
